@@ -1,6 +1,6 @@
 ﻿namespace APICatalago.Models;
 
-public class produtos
+public class produto
 {
     public int ProdutoId { get; set; }
     public string? nome { get; set; }
