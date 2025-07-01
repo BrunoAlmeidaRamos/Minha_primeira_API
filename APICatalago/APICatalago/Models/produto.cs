@@ -9,4 +9,6 @@ public class produto
     public string? imagemUrl { get; set; }
     public bool Estoque { get; set; }
     public DateTime DataCadastro { get; set; }
+    public int CategoriaId { get; set; }
+    public categoria? Categoria { get; set; }
 }
