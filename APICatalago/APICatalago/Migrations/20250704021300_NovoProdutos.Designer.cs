@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace APICatalago.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250703184033_SeedProdutos")]
-    partial class SeedProdutos
+    [Migration("20250704021300_NovoProdutos")]
+    partial class NovoProdutos
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
