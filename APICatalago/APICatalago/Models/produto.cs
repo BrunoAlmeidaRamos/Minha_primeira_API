@@ -24,7 +24,7 @@ public class produto
     [Required]
     [StringLength(300)]
     public string? imagemUrl { get; set; }
-    public bool Estoque { get; set; }
+    public int Estoque { get; set; }
     public DateTime DataCadastro { get; set; }
     public int CategoriaId { get; set; }
     public categoria? Categoria { get; set; }
