@@ -28,8 +28,7 @@ public class ProdutosController : ControllerBase
         return produtos;
     }
 
-    [HttpGet ("{id:int}")]
-
+    [HttpGet ("{id:int}", Name= "ObterProduto")]
     public ActionResult<produto> Get(int id)
     {
         var produto = _context.Produtos.FirstOrDefault(p => p.ProdutoId == id);
@@ -39,6 +38,33 @@ public class ProdutosController : ControllerBase
         }
         return produto;
     }
+
+    [HttpPost]
+    public ActionResult Post(produto produto)
+    {
+        if (produto is null)
+        return BadRequest("Produto inválido");
         
+        _context.Produtos.Add(produto);
+        _context.SaveChanges();
+
+        return new CreatedAtRouteResult("ObterProduto", new { id = produto.ProdutoId }, produto);
+
+    }
+
+    [HttpPut("{id:int}")]
+    public ActionResult put(int id, produto produto)
+    {
+        if (id != produto.ProdutoId)
+        {
+            return BadRequest();
+        }
+
+        _context.Entry(produto).State = EntityState.Modified;
+        _context.SaveChanges();
+
+        return Ok(produto);
+    }
+    
     
 }
