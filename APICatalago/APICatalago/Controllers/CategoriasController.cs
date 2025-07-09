@@ -26,7 +26,7 @@ namespace APICatalago.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<categoria>> Get()
         {
-            var categoria = _context.Categorias.ToList();
+            var categoria = _context.Categorias.AsNoTracking().ToList();
             if (categoria is null)
             {
                 return NotFound("Categoria não econtrados");
