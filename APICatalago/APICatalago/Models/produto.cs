@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
+using System.Text.Json.Serialization;
 namespace APICatalago.Models;
 
     [Table("Produtos")]
@@ -27,5 +28,7 @@ public class produto
     public int Estoque { get; set; }
     public DateTime DataCadastro { get; set; }
     public int CategoriaId { get; set; }
+
+    [JsonIgnore]
     public categoria? Categoria { get; set; }
 }

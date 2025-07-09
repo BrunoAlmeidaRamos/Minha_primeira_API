@@ -26,10 +26,10 @@ namespace APICatalago.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<categoria>> Get()
         {
-            var categoria = _context.Produtos.ToList();
+            var categoria = _context.Categorias.ToList();
             if (categoria is null)
             {
-                return NotFound("Produtos não econtrados");
+                return NotFound("Categoria não econtrados");
             }
             return Ok(categoria);
         }
@@ -40,7 +40,7 @@ namespace APICatalago.Controllers
             var categoria = _context.Categorias.FirstOrDefault(p => p.CategoriaId == id);
             if (categoria is null)
             {
-                return NotFound("Produto não encontrado");
+                return NotFound("Categoria não encontrado");
             }
             return Ok(categoria);
         }
@@ -49,7 +49,7 @@ namespace APICatalago.Controllers
         public ActionResult Post(categoria categoria)
         {
             if (categoria is null)
-                return BadRequest("Produto inválido");
+                return BadRequest("Categoria inválido");
 
             _context.Categorias.Add(categoria);
             _context.SaveChanges();
@@ -78,13 +78,13 @@ namespace APICatalago.Controllers
             var categoria = _context.Categorias.FirstOrDefault(p => p.CategoriaId == id);
             if (categoria is null)
             {
-                return NotFound("Produto não encontrado");
+                return NotFound("Categoria não encontrado");
             }
 
             _context.Categorias.Remove(categoria);
             _context.SaveChanges();
 
-            return Ok("Produto removido com sucesso");
+            return Ok("Categoria removido com sucesso");
 
         }
     }
