@@ -22,16 +22,24 @@ namespace APICatalago.Controllers
         public ActionResult<IEnumerable<categoria>> GetCategoriasProdutos()
         {
             return _context.Categorias.Include(p => p.Produtos).ToList();
+            //return _context.Categorias.Include(p => p.Produtos).Where(c => c.CategoriaId <= 5).ToList(); // filtro para retornar apenas as primeiras 5 categorias
         }
+
         [HttpGet]
         public ActionResult<IEnumerable<categoria>> Get()
         {
-            var categoria = _context.Categorias.AsNoTracking().ToList();
-            if (categoria is null)
+
+            // Tratamentos de erro
+            try
             {
-                return NotFound("Categoria não econtrados");
+                return _context.Categorias.AsNoTracking().ToList();
             }
-            return Ok(categoria);
+            catch (Exception)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreu um problema ao tratar a sua solicitação");
+            }
+
         }
 
         [HttpGet("{id:int}", Name = "ObterCategoria")]
